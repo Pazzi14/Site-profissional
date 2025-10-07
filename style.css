@@ -12,9 +12,91 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
-/* ... (Estilos de Body, A, Header, Logo, Menu, Hero) ... */
+
+body {
+    line-height: 1.6;
+    color: var(--cinza-texto);
+    background-color: var(--branco);
+    overflow-x: hidden; /* Evita scroll horizontal em layouts responsivos */
+}
+
+a {
+    text-decoration: none;
+    color: var(--azul-profundo);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--verde-menta);
+}
+
+/* --- Header e Navegação --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: var(--branco);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo h1 {
+    font-size: 1.2em;
+    color: var(--azul-profundo);
+    line-height: 1.2;
+}
+
+.logo span {
+    font-size: 0.7em;
+    color: var(--verde-menta);
+    display: block;
+    font-weight: normal;
+}
+
+.menu-desktop {
+    display: none; /* Escondido por padrão no mobile */
+    list-style: none;
+    gap: 25px;
+}
+
+.menu-desktop a {
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+.menu-mobile-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--azul-profundo);
+}
+
+/* Menu Mobile Ativo */
+.menu-desktop.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--branco);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px 5%;
+    /* Transição suave para o menu mobile */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; 
+}
+
+.menu-desktop:not(.active) {
+    opacity: 0;
+    pointer-events: none; /* Garante que os links não sejam clicáveis quando escondidos */
+}
 
 
 /* --- Botão Fixo de WhatsApp (CTA) --- */
@@ -45,30 +127,101 @@
     text-decoration: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     animation: pulse 2s infinite; /* Roda a animação 'pulse' a cada 2 segundos, infinitamente */
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-/* ... (Estilos da Hero Section) ... */
 
+/* --- Seção Hero (Destaque Principal) --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--branco);
+    text-align: center;
+    overflow: hidden; /* Importante para o fundo 3D */
+}
 
-/* --- Seção de Diferenciais (AJUSTADO PARA SVG) --- */
+#hero-3d-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Fica atrás do conteúdo */
+    background-color: var(--azul-profundo);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 90%;
+    padding: 20px;
+    background: rgba(0, 76, 109, 0.6); /* Fundo semi-transparente para destaque do texto */
+    border-radius: 12px;
+}
+
+.hero-content h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.cta-principal-btn {
+    display: inline-block;
+    background: var(--verde-menta);
+    color: var(--azul-profundo);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cta-principal-btn:hover {
+    background-color: #55a897; /* Verde Menta um pouco mais escuro */
+    transform: translateY(-2px);
+}
+
+/* --- Seção de Diferenciais --- */
 .diferenciais {
     padding: 40px 5%;
     display: flex;
     flex-direction: column;
     gap: 30px;
-    background-color: var(--branco);
+    background-color: var(--prata-claro);
     text-align: center;
 }
 
-.diferencial-item {
-    border: 1px solid var(--prata-claro);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.diferenciais-grid {
+    display: grid;
+    gap: 20px;
+    padding-top: 20px;
 }
 
-/* NOVO ESTILO: Container para o SVG */
-.icone-customizado {
+.titulo-secao {
+    font-size: 1.8em;
+    color: var(--azul-profundo);
     margin-bottom: 10px;
+}
+
+.diferencial-item {
+    background-color: var(--branco);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Container para o SVG */
+.icone-customizado {
+    margin-bottom: 15px;
     height: 40px; 
     width: 100%;
     display: flex;
@@ -83,9 +236,120 @@
 
 .diferencial-item h3 {
     color: var(--azul-profundo);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 1.2em;
 }
-/* ... (Estilos de Depoimentos, Serviços, Rodapé) ... */
+
+/* --- Seção Depoimentos --- */
+.depoimentos-secao {
+    padding: 60px 5%;
+    background-color: var(--branco);
+    text-align: center;
+}
+
+.titulo-secao-depoimentos {
+    font-size: 2em;
+    color: var(--verde-menta);
+    margin-bottom: 10px;
+}
+
+.subtitulo-depoimentos {
+    font-size: 1em;
+    color: var(--cinza-texto);
+    margin-bottom: 40px;
+}
+
+.depoimentos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.depoimento-card {
+    background-color: var(--prata-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--azul-profundo);
+}
+
+.depoimento-texto {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.depoimento-autor {
+    font-weight: bold;
+    color: var(--azul-profundo);
+}
+
+.cta-final-depoimento {
+    margin-top: 40px;
+}
+
+/* --- Seção de Serviços/Chamada --- */
+.servicos-chamada {
+    padding: 60px 5%;
+    background-color: var(--azul-profundo);
+    text-align: center;
+    color: var(--branco);
+}
+
+.servicos-chamada h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: var(--verde-menta);
+}
+
+.servico-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.servico-card {
+    background-color: var(--branco);
+    color: var(--cinza-texto);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.servico-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.servico-card h3 {
+    color: var(--azul-profundo);
+    padding: 15px 20px 5px;
+}
+
+.servico-card p {
+    padding: 0 20px 15px;
+    font-size: 0.95em;
+}
+
+.servico-card a {
+    display: block;
+    background-color: var(--verde-menta);
+    color: var(--azul-profundo);
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.servico-card a:hover {
+    background-color: #55a897;
+}
 
 /* --- Estilos para o FAQ Resumido/Completo --- */
 .faq-resumido-secao, .faq-completo-secao {
@@ -93,30 +357,145 @@
     background-color: var(--prata-claro);
     text-align: center;
 }
+.subtitulo-faq {
+    margin-bottom: 30px;
+}
 .faq-container {
     max-width: 800px;
     margin: 0 auto 30px;
     text-align: left;
 }
 .faq-item {
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.faq-pergunta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
     background-color: var(--branco);
-    border: 1px solid #ddd;
-    /* ... (Restante dos estilos de .faq-item) ... */
+    color: var(--azul-profundo);
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    text-align: left;
 }
 .faq-pergunta i {
     transition: transform 0.3s;
     font-size: 0.9em;
     color: var(--verde-menta);
 }
-/* ... (Estilos de .faq-resposta e Media Queries) ... */
-
-/* --- Estilos para a Seção de Comparação (tratamentos.html) --- */
-.comparacao-secao {
-    background-color: #e6f7ff; 
-    padding: 40px 5%;
-    border-radius: 8px;
-    margin-bottom: 40px;
+.faq-pergunta[aria-expanded="true"] i {
+    transform: rotate(180deg);
 }
-/* ... (Estilos de .comparacao-grid, .metodo-card, .tradicional, .marcela) ... */
+.faq-resposta {
+    background-color: var(--branco);
+    color: var(--cinza-texto);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.faq-resposta p {
+    padding: 15px 0; /* Espaçamento interno da resposta */
+    margin: 0;
+}
+.link-acao {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: var(--azul-profundo);
+    margin-top: 20px;
+}
+.link-acao i {
+    font-size: 0.9em;
+}
 
-/* ... (Todos os outros estilos para páginas secundárias) ... */
+
+/* --- Footer --- */
+footer {
+    background-color: #00334d; /* Azul mais escuro que o primário */
+    color: var(--prata-claro);
+    padding: 40px 5%;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: var(--verde-menta);
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--branco);
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer .politicas {
+    line-height: 1.8;
+}
+
+.links-legais a {
+    color: var(--prata-claro);
+    margin: 0 10px;
+    text-decoration: underline;
+}
+
+/* --- Media Queries (Desktop) --- */
+@media (min-width: 768px) {
+    
+    .menu-mobile-btn {
+        display: none;
+    }
+
+    .menu-desktop {
+        display: flex;
+        flex-direction: row;
+        opacity: 1; /* Garante que está visível no desktop */
+        pointer-events: auto;
+        position: static;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .hero-content h2 {
+        font-size: 3.5em;
+    }
+
+    .diferenciais-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .depoimentos-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .servico-cards-container {
+        flex-direction: row;
+        gap: 40px;
+    }
+}
