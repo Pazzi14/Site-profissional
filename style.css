@@ -1,0 +1,122 @@
+/* --- Variáveis de Cores (Branding) --- */
+:root {
+    --azul-profundo: #004c6d;  /* Primária: Azul Escuro, Profundo */
+    --verde-menta: #66b8a7;     /* Destaque: Verde/Menta Tecnológico */
+    --branco: #ffffff;
+    --prata-claro: #f4f7ff;    /* Fundo suave / Prata */
+    --cinza-texto: #333333;
+}
+
+/* --- Reset Básico e Tipografia --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+/* ... (Estilos de Body, A, Header, Logo, Menu, Hero) ... */
+
+
+/* --- Botão Fixo de WhatsApp (CTA) --- */
+/* 1. Definição da Animação de Pulsação */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 184, 167, 0.7); /* Cor do verde-menta */
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(102, 184, 167, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 184, 167, 0);
+    }
+}
+
+/* 2. Aplicação da Animação ao Botão Fixo */
+.cta-fixo-agendar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--verde-menta);
+    color: var(--azul-profundo);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    z-index: 1000;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite; /* Roda a animação 'pulse' a cada 2 segundos, infinitamente */
+}
+/* ... (Estilos da Hero Section) ... */
+
+
+/* --- Seção de Diferenciais (AJUSTADO PARA SVG) --- */
+.diferenciais {
+    padding: 40px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: var(--branco);
+    text-align: center;
+}
+
+.diferencial-item {
+    border: 1px solid var(--prata-claro);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* NOVO ESTILO: Container para o SVG */
+.icone-customizado {
+    margin-bottom: 10px;
+    height: 40px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.icone-customizado svg {
+    stroke: var(--verde-menta);
+    width: 40px; 
+    height: 40px;
+}
+
+.diferencial-item h3 {
+    color: var(--azul-profundo);
+    margin-bottom: 5px;
+}
+/* ... (Estilos de Depoimentos, Serviços, Rodapé) ... */
+
+/* --- Estilos para o FAQ Resumido/Completo --- */
+.faq-resumido-secao, .faq-completo-secao {
+    padding: 60px 5%;
+    background-color: var(--prata-claro);
+    text-align: center;
+}
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+.faq-item {
+    background-color: var(--branco);
+    border: 1px solid #ddd;
+    /* ... (Restante dos estilos de .faq-item) ... */
+}
+.faq-pergunta i {
+    transition: transform 0.3s;
+    font-size: 0.9em;
+    color: var(--verde-menta);
+}
+/* ... (Estilos de .faq-resposta e Media Queries) ... */
+
+/* --- Estilos para a Seção de Comparação (tratamentos.html) --- */
+.comparacao-secao {
+    background-color: #e6f7ff; 
+    padding: 40px 5%;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+/* ... (Estilos de .comparacao-grid, .metodo-card, .tradicional, .marcela) ... */
+
+/* ... (Todos os outros estilos para páginas secundárias) ... */
