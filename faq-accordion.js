@@ -1,4 +1,4 @@
-// faq-accordion.js (100% Completo e Funcional para FAQ Resumido e Completo)
+// faq-accordion.js (Lógica completa e corrigida para Acordeão FAQ)
 
 document.addEventListener('DOMContentLoaded', function() {
     // Seleciona todos os botões de pergunta
@@ -6,33 +6,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            // ... (Lógica completa do Acordeão) ...
             const targetId = button.getAttribute('data-target');
             const targetElement = document.getElementById(targetId);
-            const isExpanded = button.getAttribute('aria-expanded') === 'true' || false;
+            // Verifica o estado atual de expansão
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-            // Fecha todos os outros itens
+            // 1. Fecha todos os outros itens para garantir que apenas um esteja aberto (comportamento de acordeão)
             document.querySelectorAll('.faq-pergunta').forEach(btn => {
                 if (btn !== button) {
                     btn.setAttribute('aria-expanded', 'false');
                     const otherTarget = document.getElementById(btn.getAttribute('data-target'));
-                    otherTarget.style.maxHeight = 0;
-                    otherTarget.style.paddingTop = 0;
-                    otherTarget.style.paddingBottom = 0;
+                    // Zera maxHeight e Padding
+                    otherTarget.style.maxHeight = '0px';
+                    otherTarget.style.paddingTop = '0px';
+                    otherTarget.style.paddingBottom = '0px';
                 }
             });
 
-            // Alterna o estado do item clicado
+            // 2. Alterna o estado do item clicado
             button.setAttribute('aria-expanded', !isExpanded);
             
             if (!isExpanded) {
-                targetElement.style.maxHeight = targetElement.scrollHeight + "px";
-                targetElement.style.paddingTop = "0"; 
-                targetElement.style.paddingBottom = "0"; 
+                // Abre a resposta
+                // Define o padding antes de maxHeight para a transição ser mais suave
+                targetElement.style.paddingTop = '15px'; 
+                targetElement.style.paddingBottom = '15px'; 
+                // Usa scrollHeight para se ajustar ao conteúdo dinâmico
+                targetElement.style.maxHeight = targetElement.scrollHeight + 'px';
+
             } else {
-                targetElement.style.maxHeight = 0;
-                targetElement.style.paddingTop = "0";
-                targetElement.style.paddingBottom = "0";
+                // Fecha a resposta
+                // Zera maxHeight primeiro, e o padding após a transição para evitar que o texto 'salte'
+                targetElement.style.maxHeight = '0px';
+                // Adiciona um listener para zerar o padding só depois que a transição de maxHeight terminar
+                // Isso garante que o padding não cause um 'jump' no layout.
+                targetElement.addEventListener('transitionend', function handler() {
+                    if (targetElement.style.maxHeight === '0px') {
+                        targetElement.style.paddingTop = '0px';
+                        targetElement.style.paddingBottom = '0px';
+                        targetElement.removeEventListener('transitionend', handler);
+                    }
+                }, { once: true });
             }
         });
     });
